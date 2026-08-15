@@ -1,3 +1,4 @@
+
 def show_menu():
     print("\n" + "=" * 40)
     print("📺 생생정보 네이버 블로그 프롬프트 관리자")
@@ -129,7 +130,7 @@ def show_favorites():
     favs = [p for p in prompts if p["favorite"]]
     
     if not favs:
-        print("즐겨찾기된 프롬프트가 없습니다. 텍스트 일부 추가")
+        print("즐겨찾기된 프롬프트가 없습니다.")
     else:
         for idx, p in enumerate(favs, 1):
             print(f"{idx}. [{p['category']}] {p['title']} ⭐")
