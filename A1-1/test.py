@@ -1,3 +1,4 @@
+
 def show_menu():
     print("\n" + "=" * 40)
     print("📺 생생정보 네이버 블로그 프롬프트 관리자")
@@ -11,7 +12,6 @@ def show_menu():
     print("7. 즐겨찾기 목록")
     print("0. 종료")
     print("=" * 40)
-
 
 def add_prompt():
     print("\n=== 새 프롬프트 등록 ===")
@@ -31,7 +31,7 @@ def add_prompt():
     print("\n카테고리 선택:")
     for idx, cat in enumerate(CATEGORIES, 1):
         print(f"{idx}) {cat}")
-
+    
     cat_idx = input("선택 (번호): ").strip()
     if cat_idx.isdigit() and 1 <= int(cat_idx) <= len(CATEGORIES):
         category = CATEGORIES[int(cat_idx) - 1]
@@ -46,7 +46,6 @@ def add_prompt():
     })
     print(f"\n✅ '{title}' 프롬프트가 성공적으로 등록되었습니다.")
 
-
 def show_list():
     print("\n=== 전체 프롬프트 목록 ===")
     if not prompts:
@@ -58,17 +57,16 @@ def show_list():
         print(f"{idx}. [{p['category']}] {p['title']}{star}")
     print(f"\n총 {len(prompts)}개의 프롬프트")
 
-
 def show_by_category():
     print("\n=== 카테고리별 조회 ===")
     for idx, cat in enumerate(CATEGORIES, 1):
         print(f"{idx}) {cat}")
-
+    
     choice = input("카테고리 번호 선택: ").strip()
     if choice.isdigit() and 1 <= int(choice) <= len(CATEGORIES):
         selected_cat = CATEGORIES[int(choice) - 1]
         filtered = [p for p in prompts if p["category"] == selected_cat]
-
+        
         print(f"\n[{selected_cat}] 프롬프트 목록:")
         if not filtered:
             print("해당 카테고리에 등록된 프롬프트가 없습니다.")
@@ -80,13 +78,12 @@ def show_by_category():
     else:
         print("❌ 잘못된 번호입니다.")
 
-
 def search_prompt():
     print("\n=== 프롬프트 검색 ===")
     keyword = input("검색어 입력 (제목/내용): ").strip().lower()
-
+    
     results = [p for p in prompts if keyword in p["title"].lower() or keyword in p["content"].lower()]
-
+    
     if not results:
         print("❌ 검색 결과가 없습니다.")
     else:
@@ -96,12 +93,11 @@ def search_prompt():
             print(f"{idx}. [{p['category']}] {p['title']}{star}")
         print(f"\n총 {len(results)}개 발견")
 
-
 def view_detail():
     print("\n=== 프롬프트 상세 보기 ===")
     show_list()
     num = input("\n확인할 프롬프트 번호 선택: ").strip()
-
+    
     if num.isdigit() and 1 <= int(num) <= len(prompts):
         p = prompts[int(num) - 1]
         star = "⭐" if p["favorite"] else "❌"
@@ -116,12 +112,11 @@ def view_detail():
     else:
         print("❌ 유효하지 않은 번호입니다.")
 
-
 def toggle_favorite():
     print("\n=== 즐겨찾기 설정/해제 ===")
     show_list()
     num = input("\n프롬프트 번호 선택: ").strip()
-
+    
     if num.isdigit() and 1 <= int(num) <= len(prompts):
         p = prompts[int(num) - 1]
         p["favorite"] = not p["favorite"]
@@ -130,11 +125,10 @@ def toggle_favorite():
     else:
         print("❌ 유효하지 않은 번호입니다.")
 
-
 def show_favorites():
     print("\n=== ⭐ 즐겨찾기 목록 ===")
     favs = [p for p in prompts if p["favorite"]]
-
+    
     if not favs:
         print("즐겨찾기된 프롬프트가 없습니다.")
     else:
@@ -142,12 +136,11 @@ def show_favorites():
             print(f"{idx}. [{p['category']}] {p['title']} ⭐")
         print(f"\n총 {len(favs)}개의 즐겨찾기")
 
-
 def main():
     while True:
         show_menu()
         choice = input("선택할 기능의 번호를 입력하세요: ").strip()
-
+        
         if choice == "1":
             add_prompt()
         elif choice == "2":
@@ -168,43 +161,5 @@ def main():
         else:
             print("\n❌ 잘못된 입력입니다. 다시 선택해 주세요.")
 
-
 if __name__ == "__main__":
     main()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
