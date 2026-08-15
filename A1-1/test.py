@@ -1,3 +1,4 @@
+
 def show_menu():
     print("\n" + "=" * 40)
     print("📺 생생정보 네이버 블로그 프롬프트 관리자")
@@ -162,4 +163,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
